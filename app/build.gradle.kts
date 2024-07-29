@@ -25,7 +25,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -50,7 +50,7 @@ android {
 }
 
 dependencies {
-
+    // Core
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -60,10 +60,41 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     testImplementation(libs.junit)
+
+    // Test
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
+
+    // Debug
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.gson)
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
+
+    // Timber
+    implementation(libs.timber)
+
+    // Coroutines
+    runtimeOnly(libs.kotlinx.coroutines.core)
+    runtimeOnly(libs.kotlinx.coroutines.android)
+
+    // Coroutines Lifecycle
+    runtimeOnly(libs.androidx.lifecycle.viewmodel.ktx)
+
+    // Coil
+    runtimeOnly(libs.coil)
+    implementation(libs.accompanist.coil)
+
+    // Dagger Hilt
+    runtimeOnly(libs.hilt.android)
+    runtimeOnly(libs.androidx.hilt.navigation.compose)
+
+    // Palette
+    implementation(libs.androidx.palette.ktx)
 }
