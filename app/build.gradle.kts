@@ -92,8 +92,8 @@ dependencies {
     runtimeOnly(libs.androidx.lifecycle.viewmodel.ktx)
 
     // Coil
-    runtimeOnly(libs.coil)
-    implementation(libs.accompanist.coil)
+    implementation(libs.coil)
+//    implementation(libs.accompanist.coil)
 
     // Dagger Hilt
     implementation(libs.hilt.android)
