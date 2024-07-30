@@ -14,7 +14,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.androidpokedex.R
-import com.example.androidpokedex.ui.composable.SearchBar
+import com.example.androidpokedex.ui.component.SearchBar
 
 @Composable
 fun PokemonListScreen(navController: NavController) {

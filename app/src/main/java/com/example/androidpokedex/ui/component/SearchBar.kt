@@ -1,4 +1,4 @@
-package com.example.androidpokedex.ui.composable
+package com.example.androidpokedex.ui.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
