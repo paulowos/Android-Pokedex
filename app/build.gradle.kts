@@ -77,6 +77,7 @@ dependencies {
     // Retrofit
     implementation(libs.retrofit)
     implementation(libs.gson)
+    implementation(libs.converter.gson)
     implementation(libs.okhttp)
     implementation(libs.logging.interceptor)
 
@@ -97,7 +98,7 @@ dependencies {
     // Dagger Hilt
     implementation(libs.hilt.android)
     implementation(libs.androidx.hilt.navigation.compose)
-    kapt(libs.hilt.android.compiler)
+    kapt(libs.hilt.compiler)
 
     // Palette
     implementation(libs.androidx.palette.ktx)
