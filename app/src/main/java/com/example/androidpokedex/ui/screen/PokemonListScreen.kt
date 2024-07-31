@@ -14,6 +14,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.androidpokedex.R
+import com.example.androidpokedex.ui.component.PokemonList
 import com.example.androidpokedex.ui.component.SearchBar
 
 @Composable
@@ -30,7 +31,12 @@ fun PokemonListScreen(navController: NavController) {
         )
         SearchBar(
             hint = "Search ...",
-            modifier = Modifier.fillMaxWidth().padding(16.dp),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
         )
+        Spacer(modifier = Modifier.height(16.dp))
+        PokemonList(navController = navController)
     }
 }

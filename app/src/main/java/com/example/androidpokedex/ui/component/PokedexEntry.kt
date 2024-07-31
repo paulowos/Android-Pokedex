@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,14 +23,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import coil.compose.AsyncImage
-import coil.request.ImageRequest
+import coil.compose.SubcomposeAsyncImage
 import com.example.androidpokedex.data.model.PokedexEntryModel
 import com.example.androidpokedex.ui.theme.RobotoCondensed
 import com.example.androidpokedex.ui.viewModel.PokemonListViewModel
@@ -47,6 +46,7 @@ fun PokedexEntry(
         remember {
             mutableStateOf(defaultDominantColor)
         }
+
     Box(
         contentAlignment = Center,
         modifier =
@@ -68,18 +68,20 @@ fun PokedexEntry(
                 },
     ) {
         Column {
-            AsyncImage(
-                model =
-                    ImageRequest
-                        .Builder(LocalContext.current)
-                        .data(entry.imageUrl)
-                        .target {
-                            viewModel.calcDominantColor(it) { color ->
-                                dominantColor = color
-                            }
-                        }.build(),
+            SubcomposeAsyncImage(
+                model = entry.imageUrl,
                 contentDescription = entry.pokemonName,
                 modifier = Modifier.size(120.dp).align(CenterHorizontally),
+                loading = {
+                    CircularProgressIndicator(
+                        color = MaterialTheme.colorScheme.surfaceVariant,
+                    )
+                },
+                onSuccess = {
+                    viewModel.calcDominantColor(it.result.drawable) { color ->
+                        dominantColor = color
+                    }
+                },
             )
             Text(
                 text = entry.pokemonName,
@@ -88,7 +90,6 @@ fun PokedexEntry(
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth(),
             )
-//
         }
     }
 }

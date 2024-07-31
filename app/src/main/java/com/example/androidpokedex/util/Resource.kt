@@ -11,8 +11,4 @@ sealed class Resource<T>(
     class Error<T>(
         message: String,
     ) : Resource<T>(message = message)
-
-    class Loading<T>(
-        data: T? = null,
-    ) : Resource<T>(data)
 }
