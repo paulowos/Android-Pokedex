@@ -95,6 +95,8 @@ constructor(
                     isLoading.value = false
                     pokemonList.value += pokedexEntries
                 }
+
+                is Resource.Loading -> {}
             }
         }
     }
