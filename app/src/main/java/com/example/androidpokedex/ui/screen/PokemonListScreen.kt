@@ -12,13 +12,18 @@ import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.androidpokedex.R
 import com.example.androidpokedex.ui.component.PokemonList
 import com.example.androidpokedex.ui.component.SearchBar
+import com.example.androidpokedex.ui.viewModel.PokemonListViewModel
 
 @Composable
-fun PokemonListScreen(navController: NavController) {
+fun PokemonListScreen(
+    navController: NavController,
+    viewModel: PokemonListViewModel = hiltViewModel(),
+) {
     Column(modifier = Modifier.fillMaxSize()) {
         Spacer(modifier = Modifier.height(20.dp))
         Image(
@@ -35,7 +40,9 @@ fun PokemonListScreen(navController: NavController) {
                 Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
-        )
+        ) {
+            viewModel.searchPokemonList(it)
+        }
         Spacer(modifier = Modifier.height(16.dp))
         PokemonList(navController = navController)
     }
