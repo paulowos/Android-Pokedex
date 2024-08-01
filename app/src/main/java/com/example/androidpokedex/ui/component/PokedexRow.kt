@@ -19,10 +19,18 @@ fun PokedexRow(
 ) {
     Column {
         Row {
-            PokedexEntry(entry = entries[rowIndex * 2], navController = navController, modifier = Modifier.weight(1f))
+            PokedexEntry(
+                entry = entries[rowIndex * 2],
+                navController = navController,
+                modifier = Modifier.weight(1f)
+            )
             Spacer(modifier = Modifier.width(16.dp))
             if (entries.size >= rowIndex * 2 + 2) {
-                PokedexEntry(entry = entries[rowIndex * 2 + 1], navController = navController, modifier = Modifier.weight(1f))
+                PokedexEntry(
+                    entry = entries[rowIndex * 2 + 1],
+                    navController = navController,
+                    modifier = Modifier.weight(1f)
+                )
             } else {
                 Spacer(modifier = Modifier.weight(1f))
             }

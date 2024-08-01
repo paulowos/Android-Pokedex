@@ -26,11 +26,11 @@ val RobotoCondensed =
 val Typography =
     Typography(
         bodyLarge =
-            TextStyle(
-                fontFamily = Roboto,
-                fontWeight = FontWeight.Normal,
-                fontSize = 16.sp,
-                lineHeight = 24.sp,
-                letterSpacing = 0.5.sp,
-            ),
+        TextStyle(
+            fontFamily = Roboto,
+            fontWeight = FontWeight.Normal,
+            fontSize = 16.sp,
+            lineHeight = 24.sp,
+            letterSpacing = 0.5.sp,
+        ),
     )

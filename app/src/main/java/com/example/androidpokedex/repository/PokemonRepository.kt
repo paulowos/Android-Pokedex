@@ -9,24 +9,24 @@ import javax.inject.Inject
 
 @ActivityScoped
 class PokemonRepository
-    @Inject
-    constructor(
-        private val api: PokeApi,
-    ) : IPokemonRepository {
-        override suspend fun getPokemonList(
-            limit: Int,
-            offset: Int,
-        ): Resource<PokemonList> =
-            try {
-                Resource.Success(api.getPokemonList(limit, offset))
-            } catch (e: Exception) {
-                Resource.Error("A error occurred")
-            }
+@Inject
+constructor(
+    private val api: PokeApi,
+) : IPokemonRepository {
+    override suspend fun getPokemonList(
+        limit: Int,
+        offset: Int,
+    ): Resource<PokemonList> =
+        try {
+            Resource.Success(api.getPokemonList(limit, offset))
+        } catch (e: Exception) {
+            Resource.Error("A error occurred")
+        }
 
-        override suspend fun getPokemonDetail(pokemonName: String): Resource<Pokemon> =
-            try {
-                Resource.Success(api.getPokemonDetail(pokemonName))
-            } catch (e: Exception) {
-                Resource.Error("A error occurred")
-            }
-    }
+    override suspend fun getPokemonDetail(pokemonName: String): Resource<Pokemon> =
+        try {
+            Resource.Success(api.getPokemonDetail(pokemonName))
+        } catch (e: Exception) {
+            Resource.Error("A error occurred")
+        }
+}

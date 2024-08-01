@@ -3,10 +3,5 @@
   <component name="KtLint plugin">
     <ktlintMode>DISTRACT_FREE</ktlintMode>
     <ktlintRulesetVersion>V1_3_1</ktlintRulesetVersion>
-    <externalJarPaths>
-      <list>
-        <option value="$USER_HOME$/Downloads/ktlint-compose-0.4.8-all.jar" />
-      </list>
-    </externalJarPaths>
   </component>
 </project>

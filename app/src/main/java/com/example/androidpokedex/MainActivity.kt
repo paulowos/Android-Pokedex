@@ -31,7 +31,9 @@ class MainActivity : ComponentActivity() {
                 NavHost(
                     navController = navController,
                     startDestination = Routes.pokemonListScreen,
-                    modifier = Modifier.background(MaterialTheme.colorScheme.background).safeDrawingPadding(),
+                    modifier = Modifier
+                        .background(MaterialTheme.colorScheme.background)
+                        .safeDrawingPadding(),
                 ) {
                     composable(Routes.pokemonListScreen) {
                         PokemonListScreen(navController)
@@ -39,14 +41,14 @@ class MainActivity : ComponentActivity() {
                     composable(
                         Routes.pokemonDetailScreen(baseUrl = true),
                         arguments =
-                            listOf(
-                                navArgument("dominantColor") {
-                                    type = NavType.IntType
-                                },
-                                navArgument("pokemonName") {
-                                    type = NavType.StringType
-                                },
-                            ),
+                        listOf(
+                            navArgument("dominantColor") {
+                                type = NavType.IntType
+                            },
+                            navArgument("pokemonName") {
+                                type = NavType.StringType
+                            },
+                        ),
                     ) {
                         val dominantColor =
                             remember {

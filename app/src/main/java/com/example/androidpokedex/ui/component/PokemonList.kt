@@ -9,7 +9,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -39,7 +38,8 @@ fun PokemonList(
     }
 
     LazyColumn(contentPadding = PaddingValues(16.dp)) {
-        val itemCount = if (pokemonList.size % 2 == 0)pokemonList.size / 2 else pokemonList.size / 2 + 1
+        val itemCount =
+            if (pokemonList.size % 2 == 0) pokemonList.size / 2 else pokemonList.size / 2 + 1
         items(itemCount) {
             if (it >= itemCount - 1 && !isEndReached && !isLoading && !isSearching) {
                 viewModel.getPokemonPaginated()

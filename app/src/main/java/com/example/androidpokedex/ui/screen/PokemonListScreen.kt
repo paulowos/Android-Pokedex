@@ -29,17 +29,15 @@ fun PokemonListScreen(
         Image(
             painter = painterResource(id = R.drawable.ic_international_pok_mon_logo),
             contentDescription = "Pokemon",
-            modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .align(CenterHorizontally),
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(CenterHorizontally),
         )
         SearchBar(
             hint = "Search ...",
-            modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
         ) {
             viewModel.searchPokemonList(it)
         }

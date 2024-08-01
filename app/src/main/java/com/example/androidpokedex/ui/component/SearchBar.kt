@@ -34,16 +34,17 @@ fun SearchBar(
     Box(modifier = modifier) {
         BasicTextField(
             modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .shadow(5.dp, CircleShape)
-                    .background(
-                        Color.White,
-                        CircleShape,
-                    ).padding(horizontal = 20.dp, vertical = 12.dp)
-                    .onFocusChanged {
-                        isHintDisplayed = !it.isFocused
-                    },
+            Modifier
+                .fillMaxWidth()
+                .shadow(5.dp, CircleShape)
+                .background(
+                    Color.White,
+                    CircleShape,
+                )
+                .padding(horizontal = 20.dp, vertical = 12.dp)
+                .onFocusChanged {
+                    isHintDisplayed = !it.isFocused
+                },
             value = text,
             onValueChange = {
                 text = it
@@ -54,7 +55,11 @@ fun SearchBar(
             textStyle = TextStyle(Color.Black),
         )
         if (isHintDisplayed) {
-            Text(text = hint, color = Color.LightGray, modifier = Modifier.padding(horizontal = 20.dp, vertical = 10.dp))
+            Text(
+                text = hint,
+                color = Color.LightGray,
+                modifier = Modifier.padding(horizontal = 20.dp, vertical = 10.dp)
+            )
         }
     }
 }

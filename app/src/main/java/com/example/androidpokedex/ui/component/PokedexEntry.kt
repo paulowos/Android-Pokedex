@@ -42,40 +42,35 @@ fun PokedexEntry(
     viewModel: PokemonListViewModel = hiltViewModel(),
 ) {
     val defaultDominantColor = MaterialTheme.colorScheme.surface
-    var dominantColor by
-        remember {
-            mutableStateOf(defaultDominantColor)
-        }
+    var dominantColor by remember { mutableStateOf(defaultDominantColor) }
+
 
     Box(
         contentAlignment = Center,
         modifier =
-            modifier
-                .shadow(5.dp, RoundedCornerShape(10.dp))
-                .clip(RoundedCornerShape(10.dp))
-                .aspectRatio(1f)
-                .background(
-                    Brush.verticalGradient(
-                        listOf(dominantColor, defaultDominantColor),
+        modifier
+            .shadow(5.dp, RoundedCornerShape(10.dp))
+            .clip(RoundedCornerShape(10.dp))
+            .aspectRatio(1f)
+            .background(Brush.verticalGradient(listOf(dominantColor, defaultDominantColor)))
+            .clickable {
+                navController.navigate(
+                    Routes.pokemonDetailScreen(
+                        dominantColor.toArgb(),
+                        entry.pokemonName,
                     ),
-                ).clickable {
-                    navController.navigate(
-                        Routes.pokemonDetailScreen(
-                            dominantColor.toArgb(),
-                            entry.pokemonName,
-                        ),
-                    )
-                },
+                )
+            },
     ) {
         Column {
             SubcomposeAsyncImage(
                 model = entry.imageUrl,
                 contentDescription = entry.pokemonName,
-                modifier = Modifier.size(120.dp).align(CenterHorizontally),
+                modifier = Modifier
+                    .size(120.dp)
+                    .align(CenterHorizontally),
                 loading = {
-                    CircularProgressIndicator(
-                        color = MaterialTheme.colorScheme.surfaceVariant,
-                    )
+                    CircularProgressIndicator(color = MaterialTheme.colorScheme.surfaceVariant)
                 },
                 onSuccess = {
                     viewModel.calcDominantColor(it.result.drawable) { color ->
