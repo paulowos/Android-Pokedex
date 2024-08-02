@@ -1,9 +1,8 @@
 package com.example.androidpokedex.ui.screen
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.size
@@ -40,7 +39,8 @@ fun PokemonDetailScreen(
     val pokemonDetail = produceState<Resource<Pokemon>>(initialValue = Resource.Loading()) {
         value = viewModel.getPokemonDetail(pokemonName)
     }.value
-    Box(
+
+    Column(
         modifier = Modifier
             .fillMaxSize()
             .background(
@@ -50,15 +50,25 @@ fun PokemonDetailScreen(
                 )
             )
             .padding(bottom = 16.dp)
-            .safeDrawingPadding()
+            .safeDrawingPadding(),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         PokemonDetailTopSection(navController = navController)
+        if (pokemonDetail is Resource.Success) {
+            pokemonDetail.data?.sprites?.let {
+                SubcomposeAsyncImage(
+                    model = it.frontDefault,
+                    contentDescription = pokemonName,
+                    modifier = Modifier
+                        .size(pokemonImageSize)
+                )
+            }
+        }
         PokemonDetailStateWrapper(
             pokemonDetail = pokemonDetail,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(
-                    top = topPadding + pokemonImageSize / 2f,
                     start = 16.dp,
                     end = 16.dp,
                     bottom = 16.dp
@@ -66,10 +76,9 @@ fun PokemonDetailScreen(
                 .shadow(10.dp, RoundedCornerShape(10.dp))
                 .clip(RoundedCornerShape(10.dp))
                 .background(MaterialTheme.colorScheme.surface)
-                .align(Alignment.BottomCenter),
+                .padding(top = 16.dp),
             loadingModifier = Modifier
                 .size(100.dp)
-                .align(Alignment.Center)
                 .padding(
                     top = topPadding + pokemonImageSize / 2f,
                     start = 16.dp,
@@ -78,21 +87,6 @@ fun PokemonDetailScreen(
                 )
 
         )
-
-        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.TopCenter) {
-            if (pokemonDetail is Resource.Success) {
-                pokemonDetail.data?.sprites?.let {
-                    SubcomposeAsyncImage(
-                        model = it.frontDefault,
-                        contentDescription = pokemonName,
-                        modifier = Modifier
-                            .size(pokemonImageSize)
-                            .offset(y = topPadding)
-                    )
-                }
-            }
-        }
     }
-
 
 }

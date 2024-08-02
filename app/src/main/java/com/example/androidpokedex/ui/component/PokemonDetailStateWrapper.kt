@@ -28,7 +28,7 @@ fun PokemonDetailStateWrapper(
         )
 
         is Resource.Success -> {
-            
+            PokemonDetailSection(pokemonDetail = pokemonDetail.data!!, modifier = modifier)
         }
     }
 }
