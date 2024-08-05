@@ -42,6 +42,7 @@ fun PokemonDetailSection(modifier: Modifier = Modifier, pokemonDetail: Pokemon) 
             pokemonHeight = pokemonDetail.height,
             pokemonWeight = pokemonDetail.weight
         )
+        PokemonBaseStats(pokemonDetail = pokemonDetail)
     }
 
 }
