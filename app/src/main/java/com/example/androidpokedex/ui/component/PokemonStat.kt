@@ -24,9 +24,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun PokemonStat(
@@ -34,7 +34,7 @@ fun PokemonStat(
     statValue: Int,
     statMaxValue: Int,
     statColor: Color,
-    height: Dp = 20.dp,
+    height: Dp = 35.dp,
     animationDuration: Int = 1000,
     animationDelay: Int = 0,
 ) {
@@ -68,10 +68,17 @@ fun PokemonStat(
                 .background(statColor)
                 .padding(horizontal = 16.dp)
         ) {
-            Text(text = statName, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
+            Text(
+                text = statName,
+                fontWeight = FontWeight.Bold,
+                fontSize = 18.sp,
+                color = Color.White
+            )
             Text(
                 text = (currentPercent.value * statMaxValue).toInt().toString(),
                 fontWeight = FontWeight.Bold,
+                fontSize = 18.sp,
+                color = Color.White
             )
 
         }
